@@ -8,9 +8,7 @@ const ProductList = props => {
     const [productlist, setList] = useState(props);
     console.log("list",productlist);
     const deleteHandler = (id) => {
-       const newList = Object.values(productlist).filter((item) => item.id !== id);
-       
-       setList(newList);
+       localStorage.removeItem(id);
     }
     const sum = props.products.map(prd => +prd.price).reduce((a, b) => a + b)
     console.log("result",+sum);
