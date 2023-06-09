@@ -12,7 +12,8 @@ const ProductList = props => {
        
        setList(newList);
     }
-    
+    const sum = props.products.map(prd => +prd.price).reduce((a, b) => a + b)
+    console.log("result",+sum);
     return(
         <Fragment>
         <h2>Products</h2>
@@ -26,7 +27,9 @@ const ProductList = props => {
             
         ))}
         
+        
     </Card>
+    <h2>Total Value Worth of Products: Rs {sum}</h2>
     </Fragment>
     )
 }
