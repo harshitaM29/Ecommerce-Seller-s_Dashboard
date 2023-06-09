@@ -22,8 +22,13 @@ const ProductForm = props => {
     }
     const addProduct = (event) => {
         event.preventDefault();
-        
+        const productDetails = {
+            name:enteredName,
+            price:enteredPrice,
+            id:enteredProductID
+        }
         props.onAddProduct(enteredProductID,enteredPrice,enteredName);
+        localStorage.setItem(enteredProductID,JSON.stringify(productDetails))
         setEnteredProductID('');
         setEnteredName('');
         setEnteredPrice('')
