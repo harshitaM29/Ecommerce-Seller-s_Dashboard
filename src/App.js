@@ -10,11 +10,19 @@ const App = () => {
       return [...prevProdcutList,{id:pId,price:pPrice,name:pName}]
     })
   }
-  console.log(productList)
+
+  const deleteProductHandler = (pId) => {
+    console.log("ID from app", pId)
+    const newList = productList.filter((product) => product.id !== pId);
+    setProductList(newList)
+   
+
+  }
+  console.log("from app",productList)
   return (
     <Fragment>
    <ProductForm onAddProduct={addProductListHandler}/>
-   <ProductList products={productList} />
+   <ProductList products={productList} onDelete={deleteProductHandler} />
     </Fragment>
   )
   

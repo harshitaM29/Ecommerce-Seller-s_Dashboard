@@ -1,29 +1,28 @@
 import classes from './ProductList.module.css';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 
 const ProductList = props => {
-   
-    const [productlist, setList] = useState(props);
-    console.log("list",productlist);
-    const deleteHandler = (id) => {
-       localStorage.removeItem(id);
+   const deleteHandler = (id) => {
+        // console.log("product id", id);
+        props.onDelete(id);
+        localStorage.removeItem(id);
     }
-    const sum = props.products.map(prd => +prd.price).reduce((a, b) => a + b)
-    console.log("result",+sum);
+    let sum = 0;
+    sum += props.products.map(prd => +prd.price).reduce((a, b) => a + b, 0)
     return(
         <Fragment>
         <h2>Products</h2>
-    <Card className={classes.products} >
+        <Card className={classes.products} >
         
-        {props.products.map(product => (
+        {props.products.map((product => (
             <li key={product.id}>
-                {product.price} {product.name}
+                {product.name} {product.price}
                  <Button type="submit" onClick={() => deleteHandler(product.id)}>Delete</Button>
             </li>
             
-        ))}
+        )))}
         
         
     </Card>
